@@ -1,0 +1,37 @@
+{
+    "1": {
+        "id": "1",
+        "name": "Brown Ape",
+        "symbol": "BAC",
+        "image": "https://ipfs.io/ipfs/QmTWi8iSUCB8iepEsaUvppR11Avc3VjEDKv5tS2otv6RWz/1.jpg",
+        "uri": "https://ipfs.io/ipfs/QmWoTyG5kVHYrR1o7cXP8Hkqm2qLuZK5GTNTzYoZZKTa4s/1.json"
+    },
+    "2": {
+        "id": "2",
+        "name": "Cool Hat Ape",
+        "symbol": "CHAC",
+        "image": "https://ipfs.io/ipfs/QmTWi8iSUCB8iepEsaUvppR11Avc3VjEDKv5tS2otv6RWz/2.jpg",
+        "uri": "https://ipfs.io/ipfs/QmWoTyG5kVHYrR1o7cXP8Hkqm2qLuZK5GTNTzYoZZKTa4s/2.json"
+    },
+    "3": {
+        "id": "3",
+        "name": "Yello Hat Ape",
+        "symbol": "YHAC",
+        "image": "https://ipfs.io/ipfs/QmTWi8iSUCB8iepEsaUvppR11Avc3VjEDKv5tS2otv6RWz/3.jpg",
+        "uri": "https://ipfs.io/ipfs/QmWoTyG5kVHYrR1o7cXP8Hkqm2qLuZK5GTNTzYoZZKTa4s/3.json"
+    },
+    "4": {
+        "id": "4",
+        "name": "Waving Monkey",
+        "symbol": "WMC",
+        "image": "https://ipfs.io/ipfs/QmTWi8iSUCB8iepEsaUvppR11Avc3VjEDKv5tS2otv6RWz/4.jpg",
+        "uri": "https://ipfs.io/ipfs/QmWoTyG5kVHYrR1o7cXP8Hkqm2qLuZK5GTNTzYoZZKTa4s/4.json"
+    },
+    "5": {
+        "id": "5",
+        "name": "Zombie Monkey",
+        "symbol": "ZMC",
+        "image": "https://ipfs.io/ipfs/QmTWi8iSUCB8iepEsaUvppR11Avc3VjEDKv5tS2otv6RWz/5.jpg",
+        "uri": "https://ipfs.io/ipfs/QmWoTyG5kVHYrR1o7cXP8Hkqm2qLuZK5GTNTzYoZZKTa4s/5.json"
+    }
+}

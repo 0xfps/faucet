@@ -105,3 +105,13 @@ a {
     color-scheme: dark;
   }
 }
+
+@font-face {
+  font-family: 'SFR';
+  src: url('../../public/fonts/SF\ Pro\ Display\ Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SFB';
+  src: url('../../public/fonts/SF\ Pro\ Display\ Bold.ttf') format('truetype');
+}
