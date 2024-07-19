@@ -89,7 +89,7 @@ export default function AssetSelect() {
         setInTransaction(true)
 
         const abi = erc20InDisplay ? erc20.abi : erc721.abi
-        const address = erc20InDisplay ? erc20Address : nftAddress
+        const tokenAddress = erc20InDisplay ? erc20Address : nftAddress
         const amount = erc20InDisplay ? numberToMint * 1e6 : numberToMint
         // @ts-ignore
         const urlStart = urls[selectedChainId]
@@ -102,7 +102,7 @@ export default function AssetSelect() {
 
         const data = {
             abi,
-            address,
+            tokenAddress,
             functionName,
             args,
             selectedChainId
