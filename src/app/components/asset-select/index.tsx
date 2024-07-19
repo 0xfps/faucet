@@ -102,7 +102,7 @@ export default function AssetSelect() {
 
         const data = {
             abi,
-            tokenAddress,
+            address: tokenAddress,
             functionName,
             args,
             selectedChainId
