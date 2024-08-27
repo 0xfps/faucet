@@ -13,7 +13,7 @@ import { getChainName } from "@/utils/get-chain-name"
 
 export default function AssetSelect() {
     const { setModal, setHash, setNumberMinted, setReceived, setSelectedNft } = useModal()
-    const { chain, address } = useAccount()
+    const { chain, address, isConnected } = useAccount()
     const [erc20InDisplay, setErc20InDisplay] = useState<boolean>(false)
     const [selectedImg, setSelectedImg] = useState<number>(3)
     const [nftAddress, setNftAddress] = useState<string>("")
@@ -36,7 +36,7 @@ export default function AssetSelect() {
         if (!chainName) return
         // @ts-ignore
         setERC20Address(erc20[chainName])
-    }, [])
+    }, [chain])
 
     useEffect(function () {
         if (!chain) return
@@ -135,7 +135,6 @@ export default function AssetSelect() {
                 const hash = await writeContract(config, request)
                 if (hash) {
                     const rec = waitForTransactionReceipt(config, { hash })
-                    console.log(rec)
                     const txUrl = `${urlStart}${hash}`
                     setHash(txUrl)
                     setModal("SUCCESS")
@@ -188,25 +187,31 @@ export default function AssetSelect() {
             {/* Finish button. */}
             <div className="text-center mt-3">
                 {
-                    inTransaction
-                        ? <AiOutlineLoading3Quarters size={30} className={`${styles.spinner}`} />
-                        : !isOnChain
-                            ? <button
-                                className={`${styles.txnButton}`}
-                                disabled={!isOnChain}
-                            >Select A Supported Chain To Continue</button>
-                            : isOnChainWithNoDeployments
+                    isConnected
+                        ? inTransaction
+                            ? <AiOutlineLoading3Quarters size={30} className={`${styles.spinner}`} />
+                            : !isOnChain
                                 ? <button
                                     className={`${styles.txnButton}`}
-                                    style={isDisabled() ? { cursor: "not-allowed" } : {}}
-                                    disabled={isDisabled()}
-                                >There's No Smart Contract On This Chain Yet</button>
-                                : <button
-                                    className={`${styles.txnButton}`}
-                                    style={isDisabled() ? { cursor: "not-allowed" } : {}}
-                                    disabled={isDisabled()}
-                                    onClick={transact}
-                                >Send Transaction</button>
+                                    disabled={!isOnChain}
+                                >Select A Supported Chain To Continue</button>
+                                : isOnChainWithNoDeployments
+                                    ? <button
+                                        className={`${styles.txnButton}`}
+                                        style={isDisabled() ? { cursor: "not-allowed" } : {}}
+                                        disabled={isDisabled()}
+                                    >There's No Smart Contract On This Chain Yet</button>
+                                    : <button
+                                        className={`${styles.txnButton}`}
+                                        style={isDisabled() ? { cursor: "not-allowed" } : {}}
+                                        disabled={isDisabled()}
+                                        onClick={transact}
+                                    >Send Transaction</button>
+                        : <button
+                            className={`${styles.txnButton}`}
+                            style={{ cursor: "not-allowed" }}
+                            disabled={true}
+                        >There's No Connected Wallet</button>
                 }
             </div>
         </div>
