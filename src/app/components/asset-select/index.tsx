@@ -44,7 +44,7 @@ export default function AssetSelect() {
         if (!chainName) return
         // @ts-ignore
         setNftAddress(erc721[chainName][selectedImg])
-    }, [selectedImg])
+    }, [selectedImg, chain])
 
     useEffect(function () {
         if (selectedChainId != chain?.id) setIsOnChain(false)
