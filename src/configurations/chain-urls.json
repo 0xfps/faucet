@@ -1,5 +1,7 @@
 {
     "11155111": "https://sepolia.etherscan.io/tx/",
     "97": "https://testnet.bscscan.com/tx/",
-    "421614": "https://sepolia.arbiscan.io/tx/"
+    "421614": "https://sepolia.arbiscan.io/tx/",
+    "84532": "https://sepolia.basescan.org/tx/",
+    "534351": "https://sepolia.scrollscan.com/tx/"
 }

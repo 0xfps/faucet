@@ -1,17 +1,17 @@
 import { http, createConfig } from 'wagmi'
-import { arbitrumSepolia, avalancheFuji, bscTestnet, polygonAmoy, sepolia } from 'wagmi/chains'
+import { arbitrumSepolia, baseSepolia, bscTestnet, scrollSepolia, sepolia } from 'wagmi/chains'
 import { injected, safe, walletConnect } from 'wagmi/connectors'
 import dotenv from "dotenv"
 
 dotenv.config()
 
 export const config = createConfig({
-    chains: [arbitrumSepolia, avalancheFuji, bscTestnet, polygonAmoy, sepolia],
+    chains: [arbitrumSepolia, baseSepolia, bscTestnet, scrollSepolia, sepolia],
     transports: {
         [arbitrumSepolia.id]: http(),
-        [avalancheFuji.id]: http(),
+        [baseSepolia.id]: http(),
         [bscTestnet.id]: http(),
-        [polygonAmoy.id]: http(),
+        [scrollSepolia.id]: http(),
         [sepolia.id]: http()
     },
     connectors: [

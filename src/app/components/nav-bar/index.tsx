@@ -1,5 +1,6 @@
-import { useAccount, useConnect, useDisconnect } from "wagmi"
-import ConnectWalletModal from "../connect-wallet-modal"
+"use client"
+
+import { useAccount, useDisconnect } from "wagmi"
 import { useModal } from "@/store/modal-slice"
 import { FaPowerOff } from "react-icons/fa";
 import styles from "./index.module.css"

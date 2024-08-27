@@ -3,12 +3,13 @@ import styles from "./index.module.css"
 import { useAccount } from "wagmi"
 import { switchChain } from '@wagmi/core'
 import { config } from "@/configurations/wagmi-config"
-import { nfts, erc20, erc721 } from "../../../configurations/config.json"
+import { erc20, erc721 } from "../../../configurations/config.json"
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { simulateContract, writeContract } from '@wagmi/core'
 import urls from "../../../configurations/chain-urls.json"
 import { waitForTransactionReceipt } from '@wagmi/core'
 import { useModal } from "@/store/modal-slice"
+import { getChainName } from "@/utils/get-chain-name"
 
 export default function AssetSelect() {
     const { setModal, setHash, setNumberMinted, setReceived, setSelectedNft } = useModal()
@@ -16,7 +17,7 @@ export default function AssetSelect() {
     const [erc20InDisplay, setErc20InDisplay] = useState<boolean>(false)
     const [selectedImg, setSelectedImg] = useState<number>(3)
     const [nftAddress, setNftAddress] = useState<string>("")
-    const [erc20Address,] = useState<string>("0x3CC95c856c1B815Dda6AA3047D8d281e489Ed499")
+    const [erc20Address, setERC20Address] = useState<string>("")
     const [buttonText, setButtonText] = useState<string>("Get ERC20 Instead")
     const [selectedChainId, setSelectedChainId] = useState<number>(0)
     const [maxMint, setMaxMint] = useState<number>(0)
@@ -24,24 +25,30 @@ export default function AssetSelect() {
     const [numberToMint, setNumberToMint] = useState<number>(0)
     const [inTransaction, setInTransaction] = useState<boolean>(false)
     const [isOnChain, setIsOnChain] = useState<boolean>(false)
-    const [isOnChainWithNoDeployments, setIsOnChainWithNoDeployments] = useState<boolean>(false)
+    const [isOnChainWithNoDeployments,] = useState<boolean>(false)
 
     const customStyle = { border: "5px solid black", transform: "scale(1.1)" }
+    const customStyleNFT = { ...customStyle, borderRadius: "500px" }
 
     useEffect(function () {
+        if (!chain) return
+        const chainName = getChainName(chain?.id)
+        if (!chainName) return
         // @ts-ignore
-        setNftAddress(nfts[selectedImg])
+        setERC20Address(erc20[chainName])
+    }, [])
+
+    useEffect(function () {
+        if (!chain) return
+        const chainName = getChainName(chain?.id)
+        if (!chainName) return
+        // @ts-ignore
+        setNftAddress(erc721[chainName][selectedImg])
     }, [selectedImg])
 
     useEffect(function () {
         if (selectedChainId != chain?.id) setIsOnChain(false)
         else setIsOnChain(true)
-
-        if ([43113, 97, 80002, 11155111].includes(selectedChainId)) {
-            setIsOnChainWithNoDeployments(true)
-        } else {
-            setIsOnChainWithNoDeployments(false)
-        }
     }, [selectedChainId])
 
     useEffect(function () {
@@ -49,6 +56,12 @@ export default function AssetSelect() {
             setSelectedChainId(0)
             setIsOnChain(false)
         } else {
+            const chainName = getChainName(chain?.id)
+            if (!chainName) {
+                setIsOnChain(false)
+                return
+            }
+
             setSelectedChainId(chain.id)
             setIsOnChain(true)
         }
@@ -66,7 +79,7 @@ export default function AssetSelect() {
         }
     }, [erc20InDisplay])
 
-    async function switchToChain(chainId: 421614 | 43113 | 97 | 80002 | 11155111) {
+    async function switchToChain(chainId: 421614 | 84532 | 97 | 534351 | 11155111) {
         if (chain?.id == chainId) return
 
         try {
@@ -81,7 +94,6 @@ export default function AssetSelect() {
         if (!address) return true
         if (numberToMint == 0) return true
         if (numberToMint > maxMint) return true
-        if ([43113, 97, 80002, 11155111].includes(selectedChainId)) return true // Contracts not yet deployed to BSC and Sepolia.
         return false
     }
 
@@ -114,7 +126,6 @@ export default function AssetSelect() {
         if (erc20InDisplay) {
             setReceived("token")
         } else {
-
             setSelectedNft(selectedImg)
             setReceived("nft")
         }
@@ -162,11 +173,11 @@ export default function AssetSelect() {
             <div className={`w-50 mx-auto mt-5 ${styles.chainImages}`}>
                 <h3 className="text-center">Choose A Chain</h3>
                 <div className={`p-1 ${styles.nftImages}`}>
-                    <img src="images/arbitrum.png" alt="Arbitrum" className={`${styles.chainImg}`} style={selectedChainId == 421614 ? customStyle : {}} onClick={() => switchToChain(421614)} />
-                    <img src="images/avalanche.png" alt="Avalanche" className={`${styles.chainImg}`} style={selectedChainId == 43113 ? customStyle : {}} onClick={() => switchToChain(43113)} />
-                    <img src="images/bsc.png" alt="BSC" className={`${styles.chainImg}`} style={selectedChainId == 97 ? customStyle : {}} onClick={() => switchToChain(97)} />
-                    <img src="images/polygon.png" alt="Polygon" className={`${styles.chainImg}`} style={selectedChainId == 80002 ? customStyle : {}} onClick={() => switchToChain(80002)} />
-                    <img src="images/ethereum.png" alt="Ethereum" className={`${styles.chainImg}`} style={selectedChainId == 11155111 ? customStyle : {}} onClick={() => switchToChain(11155111)} />
+                    <img src="images/arbitrum.png" alt="Arbitrum" className={`${styles.chainImg}`} style={selectedChainId == 421614 ? customStyleNFT : {}} onClick={() => switchToChain(421614)} />
+                    <img src="images/base.png" alt="Base" className={`${styles.chainImg}`} style={selectedChainId == 84532 ? customStyleNFT : {}} onClick={() => switchToChain(84532)} />
+                    <img src="images/bsc.png" alt="BSC" className={`${styles.chainImg}`} style={selectedChainId == 97 ? customStyleNFT : {}} onClick={() => switchToChain(97)} />
+                    <img src="images/scroll.png" alt="Scroll" className={`${styles.chainImg}`} style={selectedChainId == 534351 ? customStyleNFT : {}} onClick={() => switchToChain(534351)} />
+                    <img src="images/ethereum.png" alt="Ethereum" className={`${styles.chainImg}`} style={selectedChainId == 11155111 ? customStyleNFT : {}} onClick={() => switchToChain(11155111)} />
                 </div>
             </div>
             {/* Amount box. */}
