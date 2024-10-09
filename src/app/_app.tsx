@@ -13,6 +13,7 @@ export default function App({ children }: any) {
         <html lang="en">
             <head>
                 <title>Yard Token Faucet, ERC20, ERC721</title>
+                <link rel="icon" href="/images/yard.png" />
             </head>
 
             <body className={inter.className}>
