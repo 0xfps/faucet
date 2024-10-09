@@ -38,7 +38,7 @@ export default function Success() {
             }
             <p className="text-center"><a href={hash} target="_blank" style={{ color: "blue" }}>Go to transaction.</a></p>
 
-            <p className="text-center">Start swapping at <a href="https://yard.vercel.app" target="_blank" style={{ color: "blue" }}>yard.vercel.app</a>.</p>
+            <p className="text-center">Start swapping at <a href="https://yard-tau.vercel.app" target="_blank" style={{ color: "blue" }}>yard-tau.vercel.app</a>.</p>
         </ParentModal>
     )
 }
