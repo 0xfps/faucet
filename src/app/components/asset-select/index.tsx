@@ -175,7 +175,7 @@ export default function AssetSelect() {
                     <img src="images/arbitrum.png" alt="Arbitrum" className={`${styles.chainImg}`} style={selectedChainId == 421614 ? customStyleNFT : {}} onClick={() => switchToChain(421614)} />
                     <img src="images/base.png" alt="Base" className={`${styles.chainImg}`} style={selectedChainId == 84532 ? customStyleNFT : {}} onClick={() => switchToChain(84532)} />
                     <img src="images/bsc.png" alt="BSC" className={`${styles.chainImg}`} style={selectedChainId == 97 ? customStyleNFT : {}} onClick={() => switchToChain(97)} />
-                    <img src="images/scroll.png" alt="Scroll" className={`${styles.chainImg}`} style={selectedChainId == 534351 ? customStyleNFT : {}} onClick={() => switchToChain(534351)} />
+                    {/* <img src="images/scroll.png" alt="Scroll" className={`${styles.chainImg}`} style={selectedChainId == 534351 ? customStyleNFT : {}} onClick={() => switchToChain(534351)} /> */}
                     <img src="images/ethereum.png" alt="Ethereum" className={`${styles.chainImg}`} style={selectedChainId == 11155111 ? customStyleNFT : {}} onClick={() => switchToChain(11155111)} />
                 </div>
             </div>
@@ -198,12 +198,12 @@ export default function AssetSelect() {
                                 : isOnChainWithNoDeployments
                                     ? <button
                                         className={`${styles.txnButton}`}
-                                        style={isDisabled() ? { cursor: "not-allowed" } : {}}
+                                        style={isDisabled() ? { cursor: "not-allowed", opacity: "0.3" } : {}}
                                         disabled={isDisabled()}
                                     >There's No Smart Contract On This Chain Yet</button>
                                     : <button
                                         className={`${styles.txnButton}`}
-                                        style={isDisabled() ? { cursor: "not-allowed" } : {}}
+                                        style={isDisabled() ? { cursor: "not-allowed", opacity: "0.3" } : {}}
                                         disabled={isDisabled()}
                                         onClick={transact}
                                     >Send Transaction</button>

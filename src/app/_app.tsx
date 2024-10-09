@@ -12,7 +12,7 @@ export default function App({ children }: any) {
     return (
         <html lang="en">
             <head>
-                <title>Dray Token Faucet, ERC20, ERC721</title>
+                <title>Yard Token Faucet, ERC20, ERC721</title>
             </head>
 
             <body className={inter.className}>
