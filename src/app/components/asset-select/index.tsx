@@ -69,12 +69,12 @@ export default function AssetSelect() {
 
     useEffect(function () {
         if (erc20InDisplay) {
-            setButtonText("Get ERC721 Instead")
+            setButtonText("Get NFTs for swap")
             setMaxMint(1000000)
             setPlaceholder("Enter amount of tokens to receive.")
         } else {
-            setButtonText("Get ERC20 Instead")
-            setMaxMint(10)
+            setButtonText("Get yUSDC for swap fee.")
+            setMaxMint(1000)
             setPlaceholder("Enter number of NFTs to receive.")
         }
     }, [erc20InDisplay])
